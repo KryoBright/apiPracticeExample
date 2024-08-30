@@ -9,9 +9,8 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.hits</groupId>
-    <artifactId>backend2-api</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <name>backend2-api</name>
+    <artifactId>api</artifactId>
+    <version>0.0.2-SNAPSHOT</version>
     <packaging>jar</packaging>
     <description>Demo project for Spring Boot</description>
     <properties>
@@ -20,25 +19,15 @@
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>commons-logging</groupId>
-                    <artifactId>commons-logging</artifactId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>logback-classic</artifactId>
-                    <groupId>ch.qos.logback</groupId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
 
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.30</version>
+        </dependency>
         <dependency>
             <groupId>io.swagger.core.v3</groupId>
             <artifactId>swagger-annotations</artifactId>
@@ -75,19 +64,10 @@
             <artifactId>springdoc-openapi-ui</artifactId>
             <version>1.7.0</version>
         </dependency>
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-jcl</artifactId>
-        </dependency>
     </dependencies>
 
     <build>
         <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-
             <plugin>
                 <groupId>org.openapitools</groupId>
                 <artifactId>openapi-generator-maven-plugin</artifactId>
@@ -100,14 +80,15 @@
                         <configuration>
                             <inputSpec>${project.basedir}/src/main/resources/templates/api.yml</inputSpec>
                             <generatorName>spring</generatorName>
-                            <apiPackage>com.hits.backend2api.api</apiPackage>
-                            <modelPackage>com.hits.backend2api.model</modelPackage>
+                            <apiPackage>hits.student.kb.projects.testProject</apiPackage>
+                            <modelPackage>hits.student.kb.projects.testProject</modelPackage>
                             <library>spring-boot</library>
                             <supportingFilesToGenerate>
                                 ApiUtil.java
                             </supportingFilesToGenerate>
                             <configOptions>
-                                <delegatePattern>true</delegatePattern>
+                                <delegatePattern>false</delegatePattern>
+                                <interfaceOnly>true</interfaceOnly>
                             </configOptions>
                         </configuration>
                     </execution>
